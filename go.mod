@@ -1,4 +1,4 @@
-module github.com/ipfs/boxo
+module github.com/snarlorg/ipfs-boxo
 
 go 1.19
 
