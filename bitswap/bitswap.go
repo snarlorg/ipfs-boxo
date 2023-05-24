@@ -104,16 +104,17 @@ func (bs *Bitswap) NotifyNewBlocks(ctx context.Context, blks ...blocks.Block) er
 }
 
 type Stat struct {
-	Wantlist         []cid.Cid
-	Peers            []string
-	BlocksReceived   uint64
-	DataReceived     uint64
-	DupBlksReceived  uint64
-	DupDataReceived  uint64
-	MessagesReceived uint64
-	BlocksSent       uint64
-	DataSent         uint64
-	ProvideBufLen    int
+	Wantlist            []cid.Cid
+	Peers               []string
+	BlocksReceived      uint64
+	DataReceived        uint64
+	DupBlksReceived     uint64
+	DupDataReceived     uint64
+	MessagesReceived    uint64
+	BlocksSent          uint64
+	DataSent            uint64
+	ProvideBufLen       int
+	DataSentAllMessages uint64
 }
 
 func (bs *Bitswap) Stat() (*Stat, error) {
@@ -127,16 +128,17 @@ func (bs *Bitswap) Stat() (*Stat, error) {
 	}
 
 	return &Stat{
-		Wantlist:         cs.Wantlist,
-		BlocksReceived:   cs.BlocksReceived,
-		DataReceived:     cs.DataReceived,
-		DupBlksReceived:  cs.DupBlksReceived,
-		DupDataReceived:  cs.DupDataReceived,
-		MessagesReceived: cs.MessagesReceived,
-		Peers:            ss.Peers,
-		BlocksSent:       ss.BlocksSent,
-		DataSent:         ss.DataSent,
-		ProvideBufLen:    ss.ProvideBufLen,
+		Wantlist:            cs.Wantlist,
+		BlocksReceived:      cs.BlocksReceived,
+		DataReceived:        cs.DataReceived,
+		DupBlksReceived:     cs.DupBlksReceived,
+		DupDataReceived:     cs.DupDataReceived,
+		MessagesReceived:    cs.MessagesReceived,
+		Peers:               ss.Peers,
+		BlocksSent:          ss.BlocksSent,
+		DataSent:            ss.DataSent,
+		ProvideBufLen:       ss.ProvideBufLen,
+		DataSentAllMessages: ss.DataSentAllMessages,
 	}, nil
 }
 

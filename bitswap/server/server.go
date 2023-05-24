@@ -371,19 +371,22 @@ func (bs *Server) sendBlocks(ctx context.Context, env *decision.Envelope) {
 	for _, b := range blocks {
 		dataSent += len(b.RawData())
 	}
+	msgSize := env.Message.Size()
 	bs.counterLk.Lock()
 	bs.counters.BlocksSent += uint64(len(blocks))
 	bs.counters.DataSent += uint64(dataSent)
+	bs.counters.DataSentAllMessages += uint64(msgSize)
 	bs.counterLk.Unlock()
-	bs.sentHistogram.Observe(float64(env.Message.Size()))
+	bs.sentHistogram.Observe(float64(msgSize))
 	log.Debugw("sent message", "peer", env.Peer)
 }
 
 type Stat struct {
-	Peers         []string
-	ProvideBufLen int
-	BlocksSent    uint64
-	DataSent      uint64
+	Peers               []string
+	ProvideBufLen       int
+	BlocksSent          uint64
+	DataSent            uint64
+	DataSentAllMessages uint64
 }
 
 // Stat returns aggregated statistics about bitswap operations
