@@ -230,11 +230,12 @@ type Client struct {
 }
 
 type counters struct {
-	blocksRecvd    uint64
-	dupBlocksRecvd uint64
-	dupDataRecvd   uint64
-	dataRecvd      uint64
-	messagesRecvd  uint64
+	blocksRecvd         uint64
+	dupBlocksRecvd      uint64
+	dupDataRecvd        uint64
+	dataRecvd           uint64
+	messagesRecvd       uint64
+	dataRecvAllMessages uint64
 }
 
 // GetBlock attempts to retrieve a particular block from peers within the
