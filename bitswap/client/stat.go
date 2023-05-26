@@ -6,13 +6,13 @@ import (
 
 // Stat is a struct that provides various statistics on bitswap operations
 type Stat struct {
-	Wantlist               []cid.Cid
-	BlocksReceived         uint64
-	DataReceived           uint64
-	DupBlksReceived        uint64
-	DupDataReceived        uint64
-	MessagesReceived       uint64
-	DataRecieveAllMessages uint64
+	Wantlist                []cid.Cid
+	BlocksReceived          uint64
+	DataReceived            uint64
+	DupBlksReceived         uint64
+	DupDataReceived         uint64
+	MessagesReceived        uint64
+	DataRecievedAllMessages uint64
 }
 
 // Stat returns aggregated statistics about bitswap operations
@@ -24,7 +24,7 @@ func (bs *Client) Stat() (st Stat, err error) {
 	st.DupDataReceived = c.dupDataRecvd
 	st.DataReceived = c.dataRecvd
 	st.MessagesReceived = c.messagesRecvd
-	st.DataRecieveAllMessages = c.dataRecvAllMessages
+	st.DataRecievedAllMessages = c.dataRecvAllMessages
 	bs.counterLk.Unlock()
 	st.Wantlist = bs.GetWantlist()
 

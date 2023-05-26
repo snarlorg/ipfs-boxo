@@ -348,6 +348,7 @@ func (bs *Client) ReceiveMessage(ctx context.Context, p peer.ID, incoming bsmsg.
 	}
 
 	iblocks := incoming.Blocks()
+	bs.counters.dataRecvAllMessages += uint64(incoming.Size())
 
 	if len(iblocks) > 0 {
 		bs.updateReceiveCounters(iblocks)
